@@ -14,56 +14,54 @@ import com.review.persistence.ReplyDAO;
 @Service
 public class ReplyServiceImpl implements ReplyService {
 
-  @Inject
-  private ReplyDAO replyDAO;
-  
-  @Inject
-  private BoardDAO boardDAO;
+	@Inject
+	private ReplyDAO replyDAO;
 
-  @Transactional
-  @Override
-  public void addReply(ReplyVO vo) throws Exception {
+	@Inject
+	private BoardDAO boardDAO;
 
-    replyDAO.create(vo);
-    boardDAO.updateReplyCnt(vo.getno(), 1);
-  }
-  
-  @Transactional
-  @Override
-  public void removeReply(Integer rno) throws Exception {
+	@Transactional
+	@Override
+	public void addReply(ReplyVO vo) throws Exception {
 
-    int no = replyDAO.getno(rno);
-    replyDAO.delete(rno);
-    boardDAO.updateReplyCnt(no, -1);
-  }   
+		replyDAO.create(vo);
+		boardDAO.updateReplyCnt(vo.getno(), 1);
+	}
 
+	@Transactional
+	@Override
+	public void removeReply(Integer rno) throws Exception {
 
-
-  @Override
-  public List<ReplyVO> listReply(Integer no) throws Exception {
-
-    return replyDAO.list(no);
-  }
-
-  @Override
-  public void modifyReply(ReplyVO vo) throws Exception {
-
-    replyDAO.update(vo);
-  }
+		int no = replyDAO.getno(rno);
+		replyDAO.delete(rno);
+		boardDAO.updateReplyCnt(no, -1);
+	}   
 
 
+	@Override
+	public List<ReplyVO> listReply(Integer no) throws Exception {
 
-  @Override
-  public List<ReplyVO> listReplyPage(Integer no, Criteria cri) 
-      throws Exception {
+		return replyDAO.list(no);
+	}
 
-    return replyDAO.listPage(no, cri);
-  }
+	@Override
+	public void modifyReply(ReplyVO vo) throws Exception {
 
-  @Override
-  public int count(Integer no) throws Exception {
+		replyDAO.update(vo);
+	}
 
-    return replyDAO.count(no);
-  }
+
+	@Override
+	public List<ReplyVO> listReplyPage(Integer no, Criteria cri) 
+			throws Exception {
+
+		return replyDAO.listPage(no, cri);
+	}
+
+	@Override
+	public int count(Integer no) throws Exception {
+
+		return replyDAO.count(no);
+	}
 
 }

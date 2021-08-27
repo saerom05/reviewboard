@@ -34,172 +34,103 @@ small {
 			event.preventDefault();
 		});
 
-		$(".fileDrop").on("drop", function(event){
-			event.preventDefault();
-			
-			var files = event.originalEvent.dataTransfer.files;
-			
-			var file = files[0];
+		$(".fileDrop")
+				.on(
+						"drop",
+						function(event) {
+							event.preventDefault();
 
-			//console.log(file);
-			
-			var formData = new FormData();
-			
-			formData.append("file", file);
-			
+							var files = event.originalEvent.dataTransfer.files;
+
+							var file = files[0];
+
+							var formData = new FormData();
+
+							formData.append("file", file);
+
+							$
+									.ajax({
+										url : '/uploadAjax',
+										data : formData,
+										dataType : 'text',
+										processData : false,
+										contentType : false,
+										type : 'POST',
+										success : function(data) {
+
+											var str = "";
+
+											if (checkImageType(data)) {
+												str = "<div><a href=displayFile?fileName="
+														+ getImageLink(data)
+														+ ">"
+														+ "<img src='displayFile?fileName="
+														+ data
+														+ "'/>"
+														+ "</a><small data-src="+data+">X</small></div>";
+											} else {
+												str = "<div><a href='displayFile?fileName="
+														+ data
+														+ "'>"
+														+ getOriginalName(data)
+														+ "</a>"
+														+ "<small data-src="+data+">X</small></div></div>";
+											}
+
+											$(".uploadedList").append(str);
+										}
+									});
+						});
+
+		$(".uploadedList").on("click", "small", function(event) {
+
+			var that = $(this);
+
 			$.ajax({
-				  url: '/uploadAjax',
-				  data: formData,
-				  dataType:'text',
-				  processData: false,
-				  contentType: false,
-				  type: 'POST',
-				  success: function(data){
-					  
-					  var str ="";
-					  
-					  if(checkImageType(data)){
-						  str ="<div><a href=displayFile?fileName="+getImageLink(data)+">"
-								  +"<img src='displayFile?fileName="+data+"'/>"
-								  +"</a><small data-src="+data+">X</small></div>";
-					  }else{
-						  str = "<div><a href='displayFile?fileName="+data+"'>" 
-								  + getOriginalName(data)+"</a>"
-								  +"<small data-src="+data+">X</small></div></div>";
-					  }
-					  
-					  $(".uploadedList").append(str);
-				  }
-				});	
+				url : "deleteFile",
+				type : "post",
+				data : {
+					fileName : $(this).attr("data-src")
+				},
+				dataType : "text",
+				success : function(result) {
+					if (result == 'deleted') {
+						that.parent("div").remove();
+					}
+				}
+			});
 		});
 
+		function getOriginalName(fileName) {
 
-		$(".uploadedList").on("click", "small", function(event){
-			
-				 var that = $(this);
-			
-			   $.ajax({
-				   url:"deleteFile",
-				   type:"post",
-				   data: {fileName:$(this).attr("data-src")},
-				   dataType:"text",
-				   success:function(result){
-					   if(result == 'deleted'){
-						   that.parent("div").remove();
-					   }
-				   }
-			   });
-		});
-		
-		
-/* 		
-$(".fileDrop").on("drop", function(event) {
-	event.preventDefault();
-	
-	var files = event.originalEvent.dataTransfer.files;
-	
-	var file = files[0];
+			if (checkImageType(fileName)) {
+				return;
+			}
 
-	//console.log(file);
-	var formData = new FormData();
-	
-	formData.append("file", file);
+			var idx = fileName.indexOf("_") + 1;
+			return fileName.substr(idx);
 
-	
-	$.ajax({
-		  url: '/uploadAjax',
-		  data: formData,
-		  dataType:'text',
-		  processData: false,
-		  contentType: false,
-		  type: 'POST',
-		  success: function(data){
-			  
-			  var str ="";
-			  
-			  console.log(data);
-			  console.log(checkImageType(data));
-			  
-			  if(checkImageType(data)){
-				  str ="<div><a href='displayFile?fileName="+getImageLink(data)+"'>"
-						  +"<img src='displayFile?fileName="+data+"'/></a>"
-						  +data +"</div>";
-			  }else{
-				  str = "<div><a href='displayFile?fileName="+data+"'>" 
-						  + getOriginalName(data)+"</a></div>";
-			  }
-			  
-			  $(".uploadedList").append(str);
-		  }
-		});			
-});	 */
+		}
 
+		function getImageLink(fileName) {
 
-function getOriginalName(fileName){	
+			if (!checkImageType(fileName)) {
+				return;
+			}
+			var front = fileName.substr(0, 12);
+			var end = fileName.substr(14);
 
-	if(checkImageType(fileName)){
-		return;
-	}
-	
-	var idx = fileName.indexOf("_") + 1 ;
-	return fileName.substr(idx);
-	
-}
+			return front + end;
 
+		}
 
-function getImageLink(fileName){
-	
-	if(!checkImageType(fileName)){
-		return;
-	}
-	var front = fileName.substr(0,12);
-	var end = fileName.substr(14);
-	
-	return front + end;
-	
-}
+		function checkImageType(fileName) {
 
+			var pattern = /jpg|png/i;
 
+			return fileName.match(pattern);
 
-
-/* 		$(".fileDrop").on("drop", function(event) {
-			event.preventDefault();
-			
-			var files = event.originalEvent.dataTransfer.files;
-			
-			var file = files[0];
-
-			//console.log(file);
-			var formData = new FormData();
-			
-			formData.append("file", file);
-			
-			$.ajax({
-				  url: '/uploadAjax',
-				  data: formData,
-				  dataType:'text',
-				  processData: false,
-				  contentType: false,
-				  type: 'POST',
-				  success: function(data){
-					 	
-					  alert(data);
-					 
-				  }
-				});
-			
-		}); */
-		
-
-	function checkImageType(fileName){
-		
-		var pattern = /jpg|png/i;
-		
-		return fileName.match(pattern);
-		
-	}
-		
-		
+		}
 	</script>
 
 </body>

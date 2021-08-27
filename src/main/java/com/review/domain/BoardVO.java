@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class BoardVO {
-	
+
 	private Integer no;
 	private String title;
 	private String content;
@@ -12,10 +12,10 @@ public class BoardVO {
 	private Date regdate;
 	private int viewcnt;
 	private int replycnt;
-	
+
 	private String[] files;
-	
-		
+
+
 	public String[] getFiles() {
 		return files;
 	}

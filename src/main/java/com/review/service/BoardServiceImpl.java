@@ -15,116 +15,94 @@ import com.review.persistence.BoardDAO;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-  @Inject
-  private BoardDAO dao;
-
-  
-  @Transactional
-  @Override
-  public void regist(BoardVO board) throws Exception {
-  
-    dao.create(board);
-    
-    String[] files = board.getFiles();
-    
-    if(files == null) { return; } 
-    
-    for (String name : files) {
-      dao.addfile(name);
-    }   
-  }
-  
-  //
-//  @Override
-//  public void regist(BoardVO board) throws Exception {
-//    dao.create(board);
-//  }
-
-//  @Override
-//  public BoardVO read(Integer no) throws Exception {
-//    return dao.read(no);
-//  }
+	@Inject
+	private BoardDAO dao;
 
 
-  @Transactional(isolation=Isolation.READ_COMMITTED)
-  @Override
-  public BoardVO read(Integer no) throws Exception {
-    dao.updateViewCnt(no);
-    return dao.read(no);
-  }
+	@Transactional
+	@Override
+	public void regist(BoardVO board) throws Exception {
 
-  
-//  @Override
-//  public void modify(BoardVO board) throws Exception {
-//    dao.update(board);
-//  }
-  
-  @Transactional
-  @Override
-  public void modify(BoardVO board) throws Exception {
-    dao.update(board);
-    
-    Integer no = board.getno();
-    
-    dao.deletefile(no);
-    
-    String[] files = board.getFiles();
-    
-    if(files == null) { return; } 
-    
-    for (String name : files) {
-      dao.replacefile(name, no);
-    }
-  }
-  
+		dao.create(board);
 
-//  @Override
-//  public void remove(Integer no) throws Exception {
-//    dao.delete(no);
-//  }
-  
-  
-  @Transactional
-  @Override
-  public void remove(Integer no) throws Exception {
-    dao.deletefile(no);
-    dao.delete(no);
-  } 
+		String[] files = board.getFiles();
 
-  @Override
-  public List<BoardVO> listAll() throws Exception {
-    return dao.listAll();
-  }
+		if(files == null) { return; } 
 
-  @Override
-  public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		for (String name : files) {
+			dao.addfile(name);
+		}   
+	}
 
-    return dao.listCriteria(cri);
-  }
 
-  @Override
-  public int listCountCriteria(Criteria cri) throws Exception {
+	@Transactional(isolation=Isolation.READ_COMMITTED)
+	@Override
+	public BoardVO read(Integer no) throws Exception {
+		dao.updateViewCnt(no);
+		return dao.read(no);
+	}
 
-    return dao.countPaging(cri);
-  }
 
-  @Override
-  public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+	@Transactional
+	@Override
+	public void modify(BoardVO board) throws Exception {
+		dao.update(board);
 
-    return dao.listSearch(cri);
-  }
+		Integer no = board.getno();
 
-  @Override
-  public int listSearchCount(SearchCriteria cri) throws Exception {
+		dao.deletefile(no);
 
-    return dao.listSearchCount(cri);
-  }
-  
+		String[] files = board.getFiles();
 
-  @Override
-  public List<String> getfile(Integer no) throws Exception {
-    
-    return dao.getfile(no);
-  }   
+		if(files == null) { return; } 
+
+		for (String name : files) {
+			dao.replacefile(name, no);
+		}
+	}
+
+
+	@Transactional
+	@Override
+	public void remove(Integer no) throws Exception {
+		dao.deletefile(no);
+		dao.delete(no);
+	} 
+
+	@Override
+	public List<BoardVO> listAll() throws Exception {
+		return dao.listAll();
+	}
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+
+		return dao.countPaging(cri);
+	}
+
+	@Override
+	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+
+		return dao.listSearch(cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+
+		return dao.listSearchCount(cri);
+	}
+
+
+	@Override
+	public List<String> getfile(Integer no) throws Exception {
+
+		return dao.getfile(no);
+	}   
 
 }

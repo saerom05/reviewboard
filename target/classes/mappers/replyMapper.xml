@@ -37,7 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from
 		review_reply
 		where
-		no =
+		no
+		=
 		#{no}
 		order by rno desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
@@ -50,7 +51,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="getno" resultType="int">
-		select no from review_reply where rno = #{rno}
+		select no from review_reply where
+		rno = #{rno}
 	</select>
 
 </mapper>

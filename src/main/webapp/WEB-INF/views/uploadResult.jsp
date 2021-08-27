@@ -3,10 +3,8 @@
 <%@page session="false"%>
 
 <script>
+	var result = '${savedName}';
 
-var result = '${savedName}';
-
-parent.addFilePath(result);
-
+	parent.addFilePath(result);
 </script>
 

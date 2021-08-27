@@ -12,7 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="com.review.domain.BoardVO">
 		select
-		no, title, content, writer, regdate, viewcnt , replycnt
+		no, title, content, writer,
+		regdate, viewcnt , replycnt
 		from
 		review_board
 		where no = #{no}
@@ -55,14 +56,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<update id="update">
-		update review_board set title =#{title}, content =#{content}
+		update review_board set title =#{title}, content
+		=#{content}
 		where no = #{no}
 	</update>
 
 	<delete id="delete">
 		delete from review_board where no = #{no}
 	</delete>
-
 
 
 	<select id="countPaging" resultType="int">
@@ -77,7 +78,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -90,19 +90,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and writer like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType == 'tc'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%') OR content like
+				and ( title like CONCAT('%', #{keyword}, '%') OR content
+				like
 				CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="searchType == 'cw'.toString()">
-				and ( content like CONCAT('%', #{keyword}, '%') OR writer like
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer
+				like
 				CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="searchType == 'tcw'.toString()">
 				and ( title like CONCAT('%', #{keyword}, '%')
 				OR
-				content like CONCAT('%', #{keyword}, '%')
+				content
+				like CONCAT('%', #{keyword}, '%')
 				OR
-				writer like CONCAT('%', #{keyword}, '%'))
+				writer like CONCAT('%',
+				#{keyword}, '%'))
 			</if>
 		</if>
 	</sql>
@@ -133,35 +137,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
- 
-<update id="updateReplyCnt">
-  update review_board set replycnt = replycnt + #{amount} where no = #{no}
-</update>
+	<update id="updateReplyCnt">
+		update review_board set replycnt = replycnt + #{amount} where no = #{no}
+	</update>
 
 
-<update id="updateViewCnt">
-  update review_board set viewcnt = viewcnt +1 where no = #{no}
-</update>
+	<update id="updateViewCnt">
+		update review_board set viewcnt = viewcnt +1 where no = #{no}
+	</update>
 
 
- 
-<insert id="addfile">
-insert into review_file(name, no) values (#{name}, LAST_INSERT_ID())
-</insert> 
+	<insert id="addfile">
+		insert into review_file(name, no) values (#{name}, LAST_INSERT_ID())
+	</insert>
 
 
-<select id="getfile" resultType="string">
-select name from review_file where no = #{no} order by regdate
-</select> 
+	<select id="getfile" resultType="string">
+		select name from review_file where no = #{no} order by regdate
+	</select>
 
- 
-<delete id="deletefile">
-delete from review_file where no = #{no}
-</delete>
 
-<insert id="replacefile">
-insert into review_file(name, no) values (#{name}, #{no})
-</insert>
-  
- 
+	<delete id="deletefile">
+		delete from review_file where no = #{no}
+	</delete>
+
+	<insert id="replacefile">
+		insert into review_file(name, no) values (#{name}, #{no})
+	</insert>
+
+
 </mapper>

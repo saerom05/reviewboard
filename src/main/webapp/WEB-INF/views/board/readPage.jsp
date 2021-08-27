@@ -6,6 +6,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
+<!-- Main content -->
 <style type="text/css">
 .popup {
 	position: absolute;
@@ -42,11 +43,12 @@
 
 <section class="content">
 	<div class="row">
-
+		<!-- left column -->
 		<div class="col-md-12">
-
+			<!-- general form elements -->
 			<div class="box box-primary">
 
+				<!-- /.box-header -->
 
 				<form role="form" action="modifyPage" method="post">
 
@@ -75,7 +77,7 @@
 							readonly="readonly">
 					</div>
 				</div>
-
+				<!-- /.box-body -->
 
 				<ul class="mailbox-attachments clearfix uploadedList"></ul>
 
@@ -90,15 +92,18 @@
 					<button type="submit" class="btn btn-primary" id="goListBtn">
 						<i class="fa fa-list"></i> 목록
 					</button>
+
+
 				</div>
 
 
 			</div>
-
+			<!-- /.box -->
 		</div>
-
+		<!--/.col (left) -->
 
 	</div>
+	<!-- /.row -->
 
 
 	<div class="row">
@@ -129,8 +134,9 @@
 			</div>
 
 
+			<!-- The time line -->
 			<ul class="timeline">
-
+				<!-- timeline time label -->
 				<li class="time-label" id="repliesDiv"><span class="bg-green">
 						댓글 목록 <small id='replycntSmall'> [ ${boardVO.replycnt} ] </small>
 				</span></li>
@@ -143,9 +149,12 @@
 			</div>
 
 		</div>
-
+		<!-- /.col -->
 	</div>
+	<!-- /.row -->
 
+
+	<!-- Modal -->
 
 	<div id="modifyModal" class="modal" role="dialog" tabindex="-1">
 		<div class="modal-dialog" role="document">
@@ -171,6 +180,7 @@
 
 
 </section>
+<!-- /.content -->
 
 
 <script id="templateAttach" type="text/x-handlebars-template">
@@ -397,7 +407,6 @@
 						"click",
 						function() {
 
-							//var replyCnt =  $("#replycntSmall").html();
 							var replyCnt = $("#replycntSmall").html().replace(
 									/[^0-9]/g, "");
 

@@ -20,13 +20,15 @@
 </style>
 
 
+<!-- Main content -->
 <section class="content">
 	<div class="row">
-
+		<!-- left column -->
 		<div class="col-md-12">
-
+			<!-- general form elements -->
 			<div class="box box-primary">
 
+				<!-- /.box-header -->
 
 				<form role="form" action="modifyPage" method="post">
 
@@ -67,12 +69,12 @@
 
 					</div>
 
+					<!-- /.box-body -->
 
 					<div class="box-footer">
 						<div>
 							<hr>
 						</div>
-
 
 						<button type="submit" class="btn btn-warning">
 							<i class="fa fa-save"></i> 등록
@@ -84,15 +86,15 @@
 					</div>
 				</form>
 
-
 			</div>
-
+			<!-- /.box -->
 		</div>
-
+		<!--/.col (left) -->
 
 	</div>
-
+	<!-- /.row -->
 </section>
+<!-- /.content -->
 
 
 <script type="text/javascript" src="/resources/js/upload.js"></script>

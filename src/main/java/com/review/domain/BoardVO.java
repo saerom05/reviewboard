@@ -34,6 +34,7 @@ public class BoardVO {
 	public void setno(Integer no) {
 		this.no = no;
 	}
+
 	public String getTitle() {
 		return title;
 	}

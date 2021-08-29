@@ -22,9 +22,9 @@ import com.review.service.BoardService;
 
 @Controller
 @RequestMapping("/board/*")
-public class SearchBoardController {
+public class BoardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(SearchBoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Inject
 	private BoardService service;

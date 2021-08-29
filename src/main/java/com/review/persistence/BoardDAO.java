@@ -42,4 +42,5 @@ public interface BoardDAO {
 
 	public void replacefile(String name, Integer no)throws Exception;
 
+
 }

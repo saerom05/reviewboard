@@ -103,6 +103,7 @@ public class BoardServiceImpl implements BoardService {
 	public List<String> getfile(Integer no) throws Exception {
 
 		return dao.getfile(no);
-	}   
+	} 
+
 
 }

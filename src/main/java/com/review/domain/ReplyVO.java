@@ -60,9 +60,9 @@ public class ReplyVO {
 		this.updatedate = updatedate;
 	}
 
-	@Override
-	public String toString() {
-		return "ReplyVO [rno=" + rno + ", no=" + no + ", replytext=" + replytext + ", replyer=" + replyer + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + "]";
-	}
+	 @Override
+	 public String toString() {
+	    return "ReplyVO [rno=" + rno + ", no=" + no + ", replytext=" + replytext + ", replyer=" + replyer + ", regdate="
+	        + regdate + ", updatedate=" + updatedate + "]";
+	 }
 }

@@ -46,17 +46,13 @@
 		<div class="col-md-12">
 			<!-- general form elements -->
 			<div class="box box-primary">
-
 				<!-- /.box-header -->
-
 				<form role="form" action="modifyPage" method="post">
-
-					<input type='hidden' name='no' value="${boardVO.no}"> <input
-						type='hidden' name='page' value="${cri.page}"> <input
-						type='hidden' name='perPageNum' value="${cri.perPageNum}">
+					<input type='hidden' name='no' value="${boardVO.no}"> 
+					<input type='hidden' name='page' value="${cri.page}"> 
+					<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
 					<input type='hidden' name='searchType' value="${cri.searchType}">
 					<input type='hidden' name='keyword' value="${cri.keyword}">
-
 				</form>
 
 				<div class="box-body">
@@ -80,7 +76,6 @@
 
 				<ul class="mailbox-attachments clearfix uploadedList"></ul>
 
-
 				<div class="box-footer">
 					<button type="submit" class="btn btn-warning" id="modifyBtn">
 						<i class="fa fa-edit"></i> 수정
@@ -91,17 +86,13 @@
 					<button type="submit" class="btn btn-primary" id="goListBtn">
 						<i class="fa fa-list"></i> 목록
 					</button>
-
 				</div>
-
 			</div>
 			<!-- /.box -->
 		</div>
 		<!--/.col (left) -->
-
 	</div>
 	<!-- /.row -->
-
 
 	<div class="row">
 		<div class="col-md-12">
@@ -130,7 +121,6 @@
 				</div>
 			</div>
 
-
 			<!-- The time line -->
 			<ul class="timeline">
 				<!-- timeline time label -->
@@ -141,10 +131,8 @@
 
 			<div class='text-center'>
 				<ul id="pagination" class="pagination pagination-sm no-margin ">
-
 				</ul>
 			</div>
-
 		</div>
 		<!-- /.col -->
 	</div>
@@ -152,7 +140,6 @@
 
 
 	<!-- Modal -->
-
 	<div id="modifyModal" class="modal" role="dialog" tabindex="-1">
 		<div class="modal-dialog" role="document">
 			<!--  Modal content -->
@@ -175,10 +162,8 @@
 		</div>
 	</div>
 
-
 </section>
 <!-- /.content -->
-
 
 <script id="templateAttach" type="text/x-handlebars-template">
 <li data-src='{{fullName}}'>
@@ -188,10 +173,8 @@
   </span>
   </a>
   </div>
-  
 </li>                
 </script>
-
 
 <script id="template" type="text/x-handlebars-template">
 {{#each .}}
@@ -248,7 +231,6 @@
 			
 		});
 	}
-
 
 	var printPaging = function(pageMaker, target) {
 
@@ -321,7 +303,6 @@
 			}});
 	});
 
-
 	$(".timeline").on("click", ".replyLi", function(event){
 		
 		var reply = $(this);
@@ -330,7 +311,6 @@
 		$(".modal-title").html(reply.attr("data-rno"));
 		
 	});
-	
 	
 	$("#replyModBtn").on("click",function(){
 		  
@@ -391,9 +371,7 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 
-	
 	$("#removeBtn").on("click", function(){
-		
 		
 		var replyCnt =  $("#replycntSmall").html().replace(/[^0-9]/g,"");
 		

@@ -10,7 +10,6 @@
   width: 100%;
   height: 200px;
   border: 2px dotted #0b58a2;
-
 }
 
 .fileDrop ul {
@@ -34,12 +33,12 @@
 
 				<!-- /.box-header -->
 
-<form role="form" action="modifyPage" method="post">
+				<form role="form" action="modifyPage" method="post">
 
-	<input type='hidden' name='page' value="${cri.page}"> 
-	<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
-	<input type='hidden' name='searchType' value="${cri.searchType}">
-	<input type='hidden' name='keyword' value="${cri.keyword}">
+					<input type='hidden' name='page' value="${cri.page}"> 
+					<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+					<input type='hidden' name='searchType' value="${cri.searchType}">
+					<input type='hidden' name='keyword' value="${cri.keyword}">
 
 					<div class="box-body">
 
@@ -62,40 +61,35 @@
 								type="text" name="writer" class="form-control"
 								value="${boardVO.writer}">
 						</div>
-							<div class="form-group">
-			<label for="exampleInputEmail1">사진을 드래그해주세요</label>
-			<div class="fileDrop">
+						<div class="form-group">
+							<label for="exampleInputEmail1">사진을 드래그해주세요.</label>
+							<div class="fileDrop">
 
-					<ul class="mailbox-attachments clearfix uploadedList">
-					</ul>
+								<ul class="mailbox-attachments clearfix uploadedList">
+								</ul>
 			
-			</div>
-		</div>
+							</div>
+						</div>
 						
-	</div>
+					</div>
 
-	<!-- /.box-body -->
+					<!-- /.box-body -->
+					<div class="box-footer">
+						<div>
+							<hr>
+						</div>
 
-	<div class="box-footer">
-		<div>
-			<hr>
-		</div>
-
-
-		    <button type="submit" class="btn btn-warning">
-		    <i class="fa fa-save"></i> 등록</button> 
-    		<button type="submit" class="btn btn-primary">
-    		<i class="fa fa-list"></i> 목록</button>
-
-	</div>
-</form>
-
+				    	<button type="submit" class="btn btn-warning">
+				    	<i class="fa fa-save"></i> 등록</button> 
+    					<button type="submit" class="btn btn-primary">
+    					<i class="fa fa-list"></i> 목록</button>
+					</div>
+			</form>
 
 			</div>
 			<!-- /.box -->
 		</div>
 		<!--/.col (left) -->
-
 	</div>
 	<!-- /.row -->
 </section>
@@ -188,8 +182,8 @@ $(".fileDrop").on("drop", function(event){
 			  var html = template(fileInfo);
 			  
 			  $(".uploadedList").append(html);
-		  }
-		});	
+		}
+	});	
 });
 
 

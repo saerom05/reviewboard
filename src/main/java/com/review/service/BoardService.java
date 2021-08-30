@@ -30,5 +30,6 @@ public interface BoardService {
 
 	public List<String> getfile(Integer no)throws Exception;
 
-
+	public void recommend(Integer no) throws Exception;
+	
 }

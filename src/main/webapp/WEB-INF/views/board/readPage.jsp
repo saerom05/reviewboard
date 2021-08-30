@@ -86,6 +86,9 @@
 					<button type="submit" class="btn btn-primary" id="goListBtn">
 						<i class="fa fa-list"></i> 목록
 					</button>
+					<button type="submit" class="btn btn-success" id="recBtn">
+						추천
+					</button>
 				</div>
 			</div>
 			<!-- /.box -->
@@ -399,6 +402,14 @@ $(document).ready(function(){
 		formObj.attr("method", "get");
 		formObj.attr("action", "/board/list");
 		formObj.submit();
+	});
+	
+	$("#recBtn").on("click", function() {
+		
+		formObj.attr("action", "/board/recommendPage");
+		formObj.submit();
+		
+		alert("해당 글을 추천하였습니다.");
 	});
 	
 	

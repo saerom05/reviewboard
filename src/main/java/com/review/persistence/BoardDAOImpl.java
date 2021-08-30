@@ -133,6 +133,12 @@ public class BoardDAOImpl implements BoardDAO {
 		session.insert(namespace+".replacefile", paramMap);
 
 	}
+	
+	@Override
+	public void updateRecCnt(Integer no) throws Exception {
 
+		session.update(namespace+".updateRecCnt", no);
+
+	}
 
 }

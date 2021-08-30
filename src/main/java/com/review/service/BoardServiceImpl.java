@@ -48,8 +48,8 @@ public class BoardServiceImpl implements BoardService {
 	public void modify(BoardVO board) throws Exception {
 		dao.update(board);
 
-		Integer no = board.getno();
-
+		Integer no = board.getNo();
+		
 		dao.deletefile(no);
 
 		String[] files = board.getFiles();
@@ -106,4 +106,10 @@ public class BoardServiceImpl implements BoardService {
 	} 
 
 
+	@Override
+	public void recommend(Integer no) throws Exception {
+
+		dao.updateRecCnt(no);
+	} 
+	
 }

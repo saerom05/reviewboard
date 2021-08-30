@@ -29,6 +29,7 @@
 							<th>작성자</th>
 							<th>날짜</th>
 							<th>조회</th>
+							<th>추천</th>
 						</tr>
 
 						<c:forEach items="${list}" var="boardVO">
@@ -43,6 +44,7 @@
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 										value="${boardVO.regdate}" /></td>
 								<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
+								<td><span class="badge bg-yellow">${boardVO.reccnt }</span></td>
 							</tr>
 
 						</c:forEach>

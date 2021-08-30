@@ -144,7 +144,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<update id="updateViewCnt">
-		update review_board set viewcnt = viewcnt +1 where no
+		update review_board set viewcnt = viewcnt + 1 where no
 		= #{no}
 	</update>
 
@@ -169,6 +169,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into review_file(name, no) values (#{name},
 		#{no})
 	</insert>
+	
+	<update id="updateRecCnt">
+		update review_board set reccnt = reccnt + 1 where no
+		= #{no}
+	</update>
 
 
 </mapper>

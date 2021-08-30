@@ -119,5 +119,17 @@ public class BoardController {
 		return service.getfile(no);
 	}  
 
+	@RequestMapping(value = "/recommendPage", method = RequestMethod.POST)
+	public String recommend(@RequestParam("no") int no, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
+		service.recommend(no);
+
+	    rttr.addAttribute("page", cri.getPage());
+	    rttr.addAttribute("perPageNum", cri.getPerPageNum());
+	    rttr.addAttribute("searchType", cri.getSearchType());
+	    rttr.addAttribute("keyword", cri.getKeyword());
+
+	    return "redirect:/board/list";
+	}
+	  
 }

@@ -5,7 +5,7 @@
 <script type="text/javascript" src="/resources/js/upload.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-
+<!-- Main content -->
 <style type="text/css">
 .popup {
 	position: absolute;
@@ -42,10 +42,12 @@
 
 <section class="content">
 	<div class="row">
-
+		<!-- left column -->
 		<div class="col-md-12">
-
+			<!-- general form elements -->
 			<div class="box box-primary">
+
+				<!-- /.box-header -->
 
 				<form role="form" action="modifyPage" method="post">
 
@@ -74,7 +76,7 @@
 							readonly="readonly">
 					</div>
 				</div>
-
+				<!-- /.box-body -->
 
 				<ul class="mailbox-attachments clearfix uploadedList"></ul>
 
@@ -89,10 +91,16 @@
 					<button type="submit" class="btn btn-primary" id="goListBtn">
 						<i class="fa fa-list"></i> 목록
 					</button>
+
 				</div>
+
 			</div>
+			<!-- /.box -->
 		</div>
+		<!--/.col (left) -->
+
 	</div>
+	<!-- /.row -->
 
 
 	<div class="row">
@@ -114,6 +122,7 @@
 							class="form-control" type="text" id="newReplyText">
 					</p>
 				</div>
+				<!-- /.box-body -->
 				<div class="box-footer">
 					<button type="button" class="btn btn-primary" id="replyAddBtn">
 						<i class="fa fa-save"></i> 등록
@@ -122,7 +131,9 @@
 			</div>
 
 
+			<!-- The time line -->
 			<ul class="timeline">
+				<!-- timeline time label -->
 				<li class="time-label" id="repliesDiv"><span class="bg-green">
 						댓글 목록 <small id='replycntSmall'> [ ${boardVO.replycnt} ] </small>
 				</span></li>
@@ -130,13 +141,17 @@
 
 			<div class='text-center'>
 				<ul id="pagination" class="pagination pagination-sm no-margin ">
+
 				</ul>
 			</div>
 
 		</div>
-
+		<!-- /.col -->
 	</div>
+	<!-- /.row -->
 
+
+	<!-- Modal -->
 
 	<div id="modifyModal" class="modal" role="dialog" tabindex="-1">
 		<div class="modal-dialog" role="document">
@@ -162,6 +177,7 @@
 
 
 </section>
+<!-- /.content -->
 
 
 <script id="templateAttach" type="text/x-handlebars-template">
@@ -172,7 +188,8 @@
   </span>
   </a>
   </div>
-  </li>                
+  
+</li>                
 </script>
 
 
@@ -214,26 +231,24 @@
 
 	}
 
-	var no = $
-	{
-		boardVO.no
-	};
-
+	var no = ${boardVO.no};
+	
 	var replyPage = 1;
-
+	
 	getPage("/replies/" + no + "/1");
 
-	function getPage(pageInfo) {
-
-		$.getJSON(pageInfo, function(data) {
-			printData(data.list, $("#repliesDiv"), $('#template'));
+	function getPage(pageInfo){
+		
+		$.getJSON(pageInfo,function(data){
+			printData(data.list, $("#repliesDiv") ,$('#template'));
 			printPaging(data.pageMaker, $(".pagination"));
-
+			
 			$("#modifyModal").modal('hide');
-			$("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]");
-
+			$("#replycntSmall").html("[ " + data.pageMaker.totalCount +" ]");
+			
 		});
 	}
+
 
 	var printPaging = function(pageMaker, target) {
 
@@ -265,204 +280,192 @@
 		getPage("/replies/" + no + "/1");
 
 	});
+	
 
-	$(".pagination").on("click", "li a", function(event) {
-
+	$(".pagination").on("click", "li a", function(event){
+		
 		event.preventDefault();
-
+		
 		replyPage = $(this).attr("href");
+		
+		getPage("/replies/"+no+"/"+replyPage);
+		
+	});
+	
 
-		getPage("/replies/" + no + "/" + replyPage);
-
+	$("#replyAddBtn").on("click",function(){
+		 
+		 var replyerObj = $("#newReplyWriter");
+		 var replytextObj = $("#newReplyText");
+		 var replyer = replyerObj.val();
+		 var replytext = replytextObj.val();
+		
+		  
+		  $.ajax({
+				type:'post',
+				url:'/replies/',
+				headers: { 
+				      "Content-Type": "application/json",
+				      "X-HTTP-Method-Override": "POST" },
+				dataType:'text',
+				data: JSON.stringify({no:no, replyer:replyer, replytext:replytext}),
+				success:function(result){
+					console.log("result: " + result);
+					if(result == 'SUCCESS'){
+						alert("등록 되었습니다.");
+						replyPage = 1;
+						getPage("/replies/"+no+"/"+replyPage );
+						replyerObj.val("");
+						replytextObj.val("");
+					}
+			}});
 	});
 
-	$("#replyAddBtn").on("click", function() {
 
-		var replyerObj = $("#newReplyWriter");
-		var replytextObj = $("#newReplyText");
-		var replyer = replyerObj.val();
-		var replytext = replytextObj.val();
-
-		$.ajax({
-			type : 'post',
-			url : '/replies/',
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			dataType : 'text',
-			data : JSON.stringify({
-				no : no,
-				replyer : replyer,
-				replytext : replytext
-			}),
-			success : function(result) {
-				console.log("result: " + result);
-				if (result == 'SUCCESS') {
-					alert("등록 되었습니다.");
-					replyPage = 1;
-					getPage("/replies/" + no + "/" + replyPage);
-					replyerObj.val("");
-					replytextObj.val("");
-				}
-			}
-		});
-	});
-
-	$(".timeline").on("click", ".replyLi", function(event) {
-
+	$(".timeline").on("click", ".replyLi", function(event){
+		
 		var reply = $(this);
-
+		
 		$("#replytext").val(reply.find('.timeline-body').text());
 		$(".modal-title").html(reply.attr("data-rno"));
-
+		
+	});
+	
+	
+	$("#replyModBtn").on("click",function(){
+		  
+		  var rno = $(".modal-title").html();
+		  var replytext = $("#replytext").val();
+		  
+		  $.ajax({
+				type:'put',
+				url:'/replies/'+rno,
+				headers: { 
+				      "Content-Type": "application/json",
+				      "X-HTTP-Method-Override": "PUT" },
+				data:JSON.stringify({replytext:replytext}), 
+				dataType:'text', 
+				success:function(result){
+					console.log("result: " + result);
+					if(result == 'SUCCESS'){
+						alert("수정 되었습니다.");
+						getPage("/replies/"+no+"/"+replyPage );
+					}
+			}});
 	});
 
-	$("#replyModBtn").on("click", function() {
-
-		var rno = $(".modal-title").html();
-		var replytext = $("#replytext").val();
-
-		$.ajax({
-			type : 'put',
-			url : '/replies/' + rno,
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "PUT"
-			},
-			data : JSON.stringify({
-				replytext : replytext
-			}),
-			dataType : 'text',
-			success : function(result) {
-				console.log("result: " + result);
-				if (result == 'SUCCESS') {
-					alert("수정 되었습니다.");
-					getPage("/replies/" + no + "/" + replyPage);
-				}
-			}
-		});
+	$("#replyDelBtn").on("click",function(){
+		  
+		  var rno = $(".modal-title").html();
+		  var replytext = $("#replytext").val();
+		  
+		  $.ajax({
+				type:'delete',
+				url:'/replies/'+rno,
+				headers: { 
+				      "Content-Type": "application/json",
+				      "X-HTTP-Method-Override": "DELETE" },
+				dataType:'text', 
+				success:function(result){
+					console.log("result: " + result);
+					if(result == 'SUCCESS'){
+						alert("삭제 되었습니다.");
+						getPage("/replies/"+no+"/"+replyPage );
+					}
+			}});
 	});
-
-	$("#replyDelBtn").on("click", function() {
-
-		var rno = $(".modal-title").html();
-		var replytext = $("#replytext").val();
-
-		$.ajax({
-			type : 'delete',
-			url : '/replies/' + rno,
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "DELETE"
-			},
-			dataType : 'text',
-			success : function(result) {
-				console.log("result: " + result);
-				if (result == 'SUCCESS') {
-					alert("삭제 되었습니다.");
-					getPage("/replies/" + no + "/" + replyPage);
-				}
-			}
-		});
-	});
+	
 </script>
 
 
 <script>
-	$(document).ready(
-			function() {
+$(document).ready(function(){
+	
+	var formObj = $("form[role='form']");
+	
+	console.log(formObj);
+	
+	$("#modifyBtn").on("click", function(){
+		formObj.attr("action", "/board/modifyPage");
+		formObj.attr("method", "get");		
+		formObj.submit();
+	});
 
-				var formObj = $("form[role='form']");
-
-				console.log(formObj);
-
-				$("#modifyBtn").on("click", function() {
-					formObj.attr("action", "/board/modifyPage");
-					formObj.attr("method", "get");
-					formObj.submit();
-				});
-
-				$("#removeBtn").on(
-						"click",
-						function() {
-
-							var replyCnt = $("#replycntSmall").html().replace(
-									/[^0-9]/g, "");
-
-							if (replyCnt > 0) {
-								alert("댓글이 달린 게시물은 삭제할 수 없습니다.");
-								return;
-							}
-
-							var arr = [];
-							$(".uploadedList li").each(function(index) {
-								arr.push($(this).attr("data-src"));
-							});
-
-							if (arr.length > 0) {
-								$.post("/deleteAllFiles", {
-									files : arr
-								}, function() {
-
-								});
-							}
-
-							formObj.attr("action", "/board/removePage");
-							formObj.submit();
-						});
-
-				$("#goListBtn").on("click", function() {
-					formObj.attr("method", "get");
-					formObj.attr("action", "/board/list");
-					formObj.submit();
-				});
-
-				var no = $
-				{
-					boardVO.no
-				}
-				;
-				var template = Handlebars.compile($("#templateAttach").html());
-
-				$.getJSON("/board/getfile/" + no, function(list) {
-					$(list).each(function() {
-
-						var fileInfo = getFileInfo(this);
-
-						var html = template(fileInfo);
-
-						$(".uploadedList").append(html);
-
-					});
-				});
-
-				$(".uploadedList").on("click", ".mailbox-attachment-name a",
-						function(event) {
-
-							var fileLink = $(this).attr("href");
-
-							if (checkImageType(fileLink)) {
-
-								event.preventDefault();
-
-								var imgTag = $("#popup_img");
-								imgTag.attr("src", fileLink);
-
-								console.log(imgTag.attr("src"));
-
-								$(".popup").show('slow');
-								imgTag.addClass("show");
-							}
-						});
-
-				$("#popup_img").on("click", function() {
-
-					$(".popup").hide('slow');
-
-				});
-
+	
+	$("#removeBtn").on("click", function(){
+		
+		
+		var replyCnt =  $("#replycntSmall").html().replace(/[^0-9]/g,"");
+		
+		if(replyCnt > 0 ){
+			alert("댓글이 달린 게시물은 삭제할 수 없습니다.");
+			return;
+		}	
+		
+		var arr = [];
+		$(".uploadedList li").each(function(index){
+			 arr.push($(this).attr("data-src"));
+		});
+		
+		if(arr.length > 0){
+			$.post("/deleteAllFiles",{files:arr}, function(){
+				
 			});
+		}
+		
+		formObj.attr("action", "/board/removePage");
+		formObj.submit();
+	});	
+	
+	$("#goListBtn ").on("click", function(){
+		formObj.attr("method", "get");
+		formObj.attr("action", "/board/list");
+		formObj.submit();
+	});
+	
+	
+	var no = ${boardVO.no};
+	var template = Handlebars.compile($("#templateAttach").html());
+	
+	$.getJSON("/board/getfile/"+no,function(list){
+		$(list).each(function(){
+			
+			var fileInfo = getFileInfo(this);
+			
+			var html = template(fileInfo);
+			
+			 $(".uploadedList").append(html);
+			
+		});
+	});
+	
+
+	$(".uploadedList").on("click", ".mailbox-attachment-name a", function(event){
+		
+		var fileLink = $(this).attr("href");
+		
+		if(checkImageType(fileLink)){
+			
+			event.preventDefault();
+					
+			var imgTag = $("#popup_img");
+			imgTag.attr("src", fileLink);
+			
+			console.log(imgTag.attr("src"));
+					
+			$(".popup").show('slow');
+			imgTag.addClass("show");		
+		}	
+	});
+	
+	$("#popup_img").on("click", function(){
+		
+		$(".popup").hide('slow');
+		
+	});	
+			
+	
+});
 </script>
 
 

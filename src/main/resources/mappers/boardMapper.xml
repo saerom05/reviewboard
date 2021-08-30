@@ -138,22 +138,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<update id="updateReplyCnt">
-		update review_board set replycnt = replycnt + #{amount} where no = #{no}
+		update review_board set replycnt = replycnt +
+		#{amount} where no = #{no}
 	</update>
 
 
 	<update id="updateViewCnt">
-		update review_board set viewcnt = viewcnt +1 where no = #{no}
+		update review_board set viewcnt = viewcnt +1 where no
+		= #{no}
 	</update>
 
 
 	<insert id="addfile">
-		insert into review_file(name, no) values (#{name}, LAST_INSERT_ID())
+		insert into review_file(name, no) values (#{name},
+		LAST_INSERT_ID())
 	</insert>
 
 
 	<select id="getfile" resultType="string">
-		select name from review_file where no = #{no} order by regdate
+		select name from review_file
+		where no = #{no} order by regdate
 	</select>
 
 
@@ -162,7 +166,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<insert id="replacefile">
-		insert into review_file(name, no) values (#{name}, #{no})
+		insert into review_file(name, no) values (#{name},
+		#{no})
 	</insert>
 
 

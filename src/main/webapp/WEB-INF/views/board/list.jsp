@@ -10,20 +10,16 @@
 <section class="content">
 	<div class="row">
 
-
 		<div class="col-md-12">
-
 
 			<div class="box">
 				<div class="box-header with-border">
-
 
 					<button id='newBtn' class="btn btn-primary pull-right">
 						<i class="fa fa-pencil"></i> 글 쓰기
 					</button>
 
 				</div>
-
 
 				<div class="box-body">
 					<table class="table table-bordered">
@@ -33,7 +29,6 @@
 							<th>작성자</th>
 							<th>날짜</th>
 							<th>조회</th>
-							
 						</tr>
 
 						<c:forEach items="${list}" var="boardVO">
@@ -48,8 +43,6 @@
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 										value="${boardVO.regdate}" /></td>
 								<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
-								
-								
 							</tr>
 
 						</c:forEach>
@@ -82,9 +75,7 @@
 
 						</ul>
 					</div>
-
 				</div>
-
 			</div>
 
 
@@ -127,9 +118,7 @@
 					</span>
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 </section>
 

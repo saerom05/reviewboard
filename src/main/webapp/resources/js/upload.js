@@ -16,7 +16,7 @@ function getFileInfo(fullName){
 		imgsrc = "/displayFile?fileName="+fullName;
 		fileLink = fullName.substr(14);
 		
-		var front = fullName.substr(0,12); // /2015/07/01/ 
+		var front = fullName.substr(0,12); 
 		var end = fullName.substr(14);
 		
 		getLink = "/displayFile?fileName="+front + end;

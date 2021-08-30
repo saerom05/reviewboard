@@ -27,7 +27,6 @@
 
 			<div class="box box-primary">
 
-
 				<form id='registerForm' role="form" method="post">
 					<div class="box-body">
 						<div class="form-group">
@@ -43,11 +42,9 @@
 							<label for="exampleInputEmail1">작성자</label> <input type="text"
 								name="writer" class="form-control">
 						</div>
-
 						<div class="form-group">
 							<label for="exampleInputEmail1">사진을 드래그해주세요.</label>
 							<div class="fileDrop">
-
 								<ul class="mailbox-attachments clearfix uploadedList">
 								</ul>
 
@@ -58,31 +55,21 @@
 
 					<div class="box-footer">
 
-
 						<button type="submit" class="btn btn-primary">
 							<i class="fa fa-save"></i> 등록
 						</button>
 
-
 					</div>
-
 				</form>
-
-
 			</div>
-
 		</div>
-
-
 	</div>
-
 </section>
 
 
 <script type="text/javascript" src="/resources/js/upload.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-
 <script id="template" type="text/x-handlebars-template">
 <li>
   <span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>

@@ -39,9 +39,7 @@
 <!-- jQuery 2.1.4 -->
 <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
-
 <body class="skin-blue sidebar-mini">
-
 
 	<section class="content-header">
 		<h1>Review Board</h1>

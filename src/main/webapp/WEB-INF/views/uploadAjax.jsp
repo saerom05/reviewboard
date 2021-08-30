@@ -126,7 +126,7 @@ small {
 
 		function checkImageType(fileName) {
 
-			var pattern = /jpg|png/i;
+			var pattern = /jpg|png|jpeg/i;
 
 			return fileName.match(pattern);
 

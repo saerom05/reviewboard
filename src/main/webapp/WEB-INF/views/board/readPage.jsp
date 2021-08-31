@@ -280,13 +280,12 @@
 
 	$("#replyAddBtn").on("click",function(){
 		 
-		 var replyerObj = $("#newReplyWriter");
-		 var replytextObj = $("#newReplyText");
-		 var replyer = replyerObj.val();
-		 var replytext = replytextObj.val();
+		var replyerObj = $("#newReplyWriter");
+		var replytextObj = $("#newReplyText");
+		var replyer = replyerObj.val();
+		var replytext = replytextObj.val();
 		
-		  
-		  $.ajax({
+		$.ajax({
 				type:'post',
 				url:'/replies/',
 				headers: { 
@@ -303,7 +302,7 @@
 						replyerObj.val("");
 						replytextObj.val("");
 					}
-			}});
+		}});
 	});
 
 	$(".timeline").on("click", ".replyLi", function(event){
@@ -317,10 +316,10 @@
 	
 	$("#replyModBtn").on("click",function(){
 		  
-		  var rno = $(".modal-title").html();
-		  var replytext = $("#replytext").val();
+		var rno = $(".modal-title").html();
+		var replytext = $("#replytext").val();
 		  
-		  $.ajax({
+		$.ajax({
 				type:'put',
 				url:'/replies/'+rno,
 				headers: { 
@@ -334,15 +333,15 @@
 						alert("수정 되었습니다.");
 						getPage("/replies/"+no+"/"+replyPage );
 					}
-			}});
+		}});
 	});
 
 	$("#replyDelBtn").on("click",function(){
 		  
-		  var rno = $(".modal-title").html();
-		  var replytext = $("#replytext").val();
+		var rno = $(".modal-title").html();
+		var replytext = $("#replytext").val();
 		  
-		  $.ajax({
+		$.ajax({
 				type:'delete',
 				url:'/replies/'+rno,
 				headers: { 
@@ -355,7 +354,7 @@
 						alert("삭제 되었습니다.");
 						getPage("/replies/"+no+"/"+replyPage );
 					}
-			}});
+		}});
 	});
 	
 </script>
@@ -433,7 +432,7 @@ $(document).ready(function(){
 		
 		var fileLink = $(this).attr("href");
 		
-		if(checkImageType(fileLink)){
+		if(checkImageType(fileLink)) {
 			
 			event.preventDefault();
 					
@@ -453,7 +452,6 @@ $(document).ready(function(){
 		
 	});	
 			
-	
 });
 </script>
 

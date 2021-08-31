@@ -37,9 +37,9 @@ public class UploadFileUtils {
 
 		String uploadedFileName = null;
 
-		if(MediaUtils.getMediaType(formatName) != null){
+		if(MediaUtils.getMediaType(formatName) != null) {
 			uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);
-		}else{
+		} else {
 			uploadedFileName = makeIcon(uploadPath, savedPath, savedName);
 		}
 

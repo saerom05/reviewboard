@@ -18,7 +18,6 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO dao;
 
-
 	@Transactional
 	@Override
 	public void regist(BoardVO board) throws Exception {
@@ -34,14 +33,12 @@ public class BoardServiceImpl implements BoardService {
 		}   
 	}
 
-
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO read(Integer no) throws Exception {
 		dao.updateViewCnt(no);
 		return dao.read(no);
 	}
-
 
 	@Transactional
 	@Override
@@ -60,7 +57,6 @@ public class BoardServiceImpl implements BoardService {
 			dao.replacefile(name, no);
 		}
 	}
-
 
 	@Transactional
 	@Override
@@ -98,13 +94,11 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listSearchCount(cri);
 	}
 
-
 	@Override
 	public List<String> getfile(Integer no) throws Exception {
 
 		return dao.getfile(no);
 	} 
-
 
 	@Override
 	public void recommend(Integer no) throws Exception {

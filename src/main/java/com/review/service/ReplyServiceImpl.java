@@ -37,7 +37,6 @@ public class ReplyServiceImpl implements ReplyService {
 		boardDAO.updateReplyCnt(no, -1);
 	}   
 
-
 	@Override
 	public List<ReplyVO> listReply(Integer no) throws Exception {
 
@@ -49,7 +48,6 @@ public class ReplyServiceImpl implements ReplyService {
 
 		replyDAO.update(vo);
 	}
-
 
 	@Override
 	public List<ReplyVO> listReplyPage(Integer no, Criteria cri) 

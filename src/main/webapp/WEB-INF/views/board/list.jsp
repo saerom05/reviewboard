@@ -135,28 +135,20 @@
 </script>
 
 <script>
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
+		$('#searchBtn').on("click", function(event) {
+			self.location = "list"
+			+ '${pageMaker.makeQuery(1)}'
+			+ "&searchType="
+			+ $("select option:selected").val()
+			+ "&keyword=" + $('#keywordInput').val();
+		});
 
-				$('#searchBtn').on(
-						"click",
-						function(event) {
+		$('#newBtn').on("click", function(evt) {
+			self.location = "register";
+		});
 
-							self.location = "list"
-									+ '${pageMaker.makeQuery(1)}'
-									+ "&searchType="
-									+ $("select option:selected").val()
-									+ "&keyword=" + $('#keywordInput').val();
-
-						});
-
-				$('#newBtn').on("click", function(evt) {
-
-					self.location = "register";
-
-				});
-
-			});
+	});
 </script>
 
 <%@include file="../include/footer.jsp"%>

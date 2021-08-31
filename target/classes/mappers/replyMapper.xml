@@ -10,14 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		*
 		from
 		review_reply
-		where no =
-		#{no}
+		where no = #{no}
 		order by rno desc
 	</select>
 
 	<insert id="create">
 		insert into review_reply (no, replytext, replyer)
-		values (#{no},#{replytext},#{replyer})
+		values (#{no}, #{replytext}, #{replyer})
 	</insert>
 
 	<update id="update">
@@ -27,28 +26,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="delete">
-		delete from review_reply where rno =#{rno}
+		delete from review_reply where rno = #{rno}
 	</delete>
-
 
 	<select id="listPage" resultType="ReplyVO">
 		select
 		*
 		from
 		review_reply
-		where
-		no
-		=
-		#{no}
+		where no = #{no}
 		order by rno desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 
 	<select id="count" resultType="int">
 		select count(no) from review_reply
-		where no =#{no}
+		where no = #{no}
 	</select>
-
 
 	<select id="getno" resultType="int">
 		select no from review_reply where
@@ -56,4 +50,3 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 </mapper>
-

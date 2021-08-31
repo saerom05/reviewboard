@@ -10,11 +10,8 @@ public class PageMaker {
 	private int endPage;
 	private boolean prev;
 	private boolean next;
-
 	private int displayPageNum = 10;
-
 	private Criteria cri;
-
 
 	public void setCri(Criteria cri) {
 		this.cri = cri;
@@ -38,7 +35,7 @@ public class PageMaker {
 			endPage = tempEndPage;
 		}
 
-		prev = startPage ==1 ? false : true;
+		prev = startPage == 1 ? false : true;
 
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 

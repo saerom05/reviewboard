@@ -34,53 +34,49 @@ small {
 			event.preventDefault();
 		});
 
-		$(".fileDrop")
-				.on(
-						"drop",
-						function(event) {
-							event.preventDefault();
+		$(".fileDrop").on("drop", function(event) {
+			event.preventDefault();
 
-							var files = event.originalEvent.dataTransfer.files;
+			var files = event.originalEvent.dataTransfer.files;
 
-							var file = files[0];
+			var file = files[0];
 
-							var formData = new FormData();
+			var formData = new FormData();
 
-							formData.append("file", file);
+			formData.append("file", file);
 
-							$
-									.ajax({
-										url : '/uploadAjax',
-										data : formData,
-										dataType : 'text',
-										processData : false,
-										contentType : false,
-										type : 'POST',
-										success : function(data) {
+			$.ajax({
+				url : '/uploadAjax',
+				data : formData,
+				dataType : 'text',
+				processData : false,
+				contentType : false,
+				type : 'POST',
+				success : function(data) {
 
-											var str = "";
+				var str = "";
 
-											if (checkImageType(data)) {
-												str = "<div><a href=displayFile?fileName="
-														+ getImageLink(data)
-														+ ">"
-														+ "<img src='displayFile?fileName="
-														+ data
-														+ "'/>"
-														+ "</a><small data-src="+data+">X</small></div>";
-											} else {
-												str = "<div><a href='displayFile?fileName="
-														+ data
-														+ "'>"
-														+ getOriginalName(data)
-														+ "</a>"
-														+ "<small data-src="+data+">X</small></div></div>";
-											}
+				if (checkImageType(data)) {
+					str = "<div><a href=displayFile?fileName="
+						+ getImageLink(data)
+						+ ">"
+						+ "<img src='displayFile?fileName="
+						+ data
+						+ "'/>"
+						+ "</a><small data-src="+data+">X</small></div>";
+				} else {
+						str = "<div><a href='displayFile?fileName="
+						+ data
+						+ "'>"
+						+ getOriginalName(data)
+						+ "</a>"
+						+ "<small data-src="+data+">X</small></div></div>";
+				}
 
-											$(".uploadedList").append(str);
+				$(".uploadedList").append(str);
 										}
-									});
-						});
+			});
+		});
 
 		$(".uploadedList").on("click", "small", function(event) {
 

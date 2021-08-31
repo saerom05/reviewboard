@@ -22,9 +22,7 @@
 
 <section class="content">
 	<div class="row">
-
 		<div class="col-md-12">
-
 			<div class="box box-primary">
 
 				<form id='registerForm' role="form" method="post">
@@ -36,7 +34,7 @@
 						<div class="form-group">
 							<label for="exampleInputPassword1">내용</label>
 							<textarea class="form-control" name="content" rows="5" cols="50">
-			</textarea>
+							</textarea>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">작성자</label> <input type="text"
@@ -47,20 +45,17 @@
 							<div class="fileDrop">
 								<ul class="mailbox-attachments clearfix uploadedList">
 								</ul>
-
 							</div>
 						</div>
 					</div>
 
-
 					<div class="box-footer">
-
 						<button type="submit" class="btn btn-primary">
 							<i class="fa fa-save"></i> 등록
 						</button>
-
 					</div>
 				</form>
+				
 			</div>
 		</div>
 	</div>
@@ -139,24 +134,22 @@
 		});
 	});
 
-	$("#registerForm").submit(
-			function(event) {
-				event.preventDefault();
+	$("#registerForm").submit( function(event) {
+		event.preventDefault();
 
-				var that = $(this);
+		var that = $(this);
 
-				var str = "";
-				$(".uploadedList .delbtn").each(
-						function(index) {
-							str += "<input type='hidden' name='files[" + index
-									+ "]' value='" + $(this).attr("href")
-									+ "'> ";
-						});
+		var str = "";
+		$(".uploadedList .delbtn").each( function(index) {
+			str += "<input type='hidden' name='files[" + index
+			+ "]' value='" + $(this).attr("href")
+			+ "'> ";
+		});
 
-				that.append(str);
+		that.append(str);
 
-				that.get(0).submit();
-			});
+		that.get(0).submit();
+	});
 </script>
 
 

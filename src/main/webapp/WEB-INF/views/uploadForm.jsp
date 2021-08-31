@@ -17,7 +17,6 @@ iframe {
 </head>
 <body>
 
-
 	<form id='form1' action="uploadForm" method="post"
 		enctype="multipart/form-data" target="zeroFrame">
 		<input type='file' name='file'> <input type='submit'>
@@ -32,7 +31,5 @@ iframe {
 		}
 	</script>
 
-
 </body>
 </html>
-

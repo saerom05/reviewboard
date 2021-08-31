@@ -32,7 +32,6 @@
 			<div class="box box-primary">
 
 				<!-- /.box-header -->
-
 				<form role="form" action="modifyPage" method="post">
 
 					<input type='hidden' name='page' value="${cri.page}"> 
@@ -41,13 +40,11 @@
 					<input type='hidden' name='keyword' value="${cri.keyword}">
 
 					<div class="box-body">
-
 						<div class="form-group">
 							<label for="exampleInputEmail1">번호</label> <input type="text"
 								name='no' class="form-control" value="${boardVO.no}"
 								readonly="readonly">
 						</div>
-
 						<div class="form-group">
 							<label for="exampleInputEmail1">제목</label> <input type="text"
 								name='title' class="form-control" value="${boardVO.title}">
@@ -64,13 +61,10 @@
 						<div class="form-group">
 							<label for="exampleInputEmail1">사진을 드래그해주세요.</label>
 							<div class="fileDrop">
-
 								<ul class="mailbox-attachments clearfix uploadedList">
 								</ul>
-			
 							</div>
 						</div>
-						
 					</div>
 
 					<!-- /.box-body -->
@@ -78,13 +72,12 @@
 						<div>
 							<hr>
 						</div>
-
 				    	<button type="submit" class="btn btn-warning">
 				    	<i class="fa fa-save"></i> 등록</button> 
     					<button type="submit" class="btn btn-primary">
     					<i class="fa fa-list"></i> 목록</button>
 					</div>
-			</form>
+				</form>
 
 			</div>
 			<!-- /.box -->
@@ -136,7 +129,7 @@ $(document).ready(function(){
 	$(".btn-warning").on("click", function(){
 		  self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"+
 				  "&searchType=${cri.searchType}&keyword=${cri.keyword}";
-		});
+	});
 	
 	$(".btn-primary").on("click", function(){
 		formObj.attr("method", "get");
@@ -144,7 +137,6 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 
-		
 });
 
 
@@ -163,7 +155,6 @@ $(".fileDrop").on("drop", function(event){
 	
 	var file = files[0];
 
-	
 	var formData = new FormData();
 	
 	formData.append("file", file);	
@@ -198,8 +189,8 @@ $(".uploadedList").on("click", ".delbtn", function(event){
 	   type:"post",
 	   data: {fileName:$(this).attr("href")},
 	   dataType:"text",
-	   success:function(result){
-		   if(result == 'deleted'){
+	   success:function(result) {
+		   if(result == 'deleted') {
 			   that.closest("li").remove();
 		   }
 	   }
@@ -210,7 +201,7 @@ $(".uploadedList").on("click", ".delbtn", function(event){
 var no = ${boardVO.no};
 var template = Handlebars.compile($("#template").html());
 
-$.getJSON("/board/getfile/"+no,function(list){
+$.getJSON("/board/getfile/"+no,function(list) {
 	$(list).each(function(){
 		
 		var fileInfo = getFileInfo(this);
@@ -226,7 +217,7 @@ $(".uploadedList").on("click", ".mailbox-filement-info a", function(event){
 	
 	var fileLink = $(this).attr("href");
 	
-	if(checkImageType(fileLink)){
+	if(checkImageType(fileLink)) {
 		
 		event.preventDefault();
 				
@@ -243,7 +234,6 @@ $(".uploadedList").on("click", ".mailbox-filement-info a", function(event){
 $("#popup_img").on("click", function(){
 	
 	$(".popup").hide('slow');
-	
 });	
 
 

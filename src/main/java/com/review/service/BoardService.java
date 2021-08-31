@@ -27,7 +27,6 @@ public interface BoardService {
 
 	public int listSearchCount(SearchCriteria cri) throws Exception;
 
-
 	public List<String> getfile(Integer no)throws Exception;
 
 	public void recommend(Integer no) throws Exception;

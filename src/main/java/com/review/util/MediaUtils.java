@@ -14,6 +14,7 @@ public class MediaUtils {
 		mediaMap = new HashMap<String, MediaType>();		
 		mediaMap.put("JPG", MediaType.IMAGE_JPEG);
 		mediaMap.put("PNG", MediaType.IMAGE_PNG);
+		
 	}
 
 	public static MediaType getMediaType(String type){

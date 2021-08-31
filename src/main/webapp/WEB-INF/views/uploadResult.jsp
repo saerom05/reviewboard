@@ -4,7 +4,5 @@
 
 <script>
 	var result = '${savedName}';
-
 	parent.addFilePath(result);
 </script>
-

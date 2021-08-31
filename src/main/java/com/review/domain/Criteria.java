@@ -50,5 +50,6 @@ public class Criteria {
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
 	}
+
 }
 

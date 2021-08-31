@@ -23,26 +23,31 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void create(BoardVO vo) throws Exception {
 		session.insert(namespace + ".create", vo);
+		
 	}
 
 	@Override
 	public BoardVO read(Integer no) throws Exception {
 		return session.selectOne(namespace + ".read", no);
+		
 	}
 
 	@Override
 	public void update(BoardVO vo) throws Exception {
 		session.update(namespace + ".update", vo);
+		
 	}
 
 	@Override
 	public void delete(Integer no) throws Exception {
 		session.delete(namespace + ".delete", no);
+		
 	}
 
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
+		
 	}
 
 	@Override
@@ -55,30 +60,35 @@ public class BoardDAOImpl implements BoardDAO {
 		page = (page - 1) * 10;
 
 		return session.selectList(namespace + ".listPage", page);
+		
 	}
 
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
 
 		return session.selectList(namespace + ".listCriteria", cri);
+		
 	}
 
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
 
 		return session.selectOne(namespace + ".countPaging", cri);
+		
 	}
 
 	@Override
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
 
 		return session.selectList(namespace + ".listSearch", cri);
+		
 	}
 
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 
 		return session.selectOne(namespace + ".listSearchCount", cri);
+		
 	}
 
 	@Override
@@ -90,6 +100,7 @@ public class BoardDAOImpl implements BoardDAO {
 		paramMap.put("amount", amount);
 
 		session.update(namespace + ".updateReplyCnt", paramMap);
+		
 	}
 
 	@Override
@@ -111,6 +122,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<String> getfile(Integer no) throws Exception {
 
 		return session.selectList(namespace +".getfile", no);
+		
 	}
 
 

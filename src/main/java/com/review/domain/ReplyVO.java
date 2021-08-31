@@ -8,7 +8,6 @@ public class ReplyVO {
 	private Integer no;
 	private String replytext;
 	private String replyer;
-
 	private Date regdate;
 	private Date updatedate;
 
@@ -65,4 +64,5 @@ public class ReplyVO {
 		return "ReplyVO [rno=" + rno + ", no=" + no + ", replytext=" + replytext + ", replyer=" + replyer + ", regdate="
 				+ regdate + ", updatedate=" + updatedate + "]";
 	}
+
 }

@@ -105,9 +105,9 @@ public class UploadController {
 
 			in = new FileInputStream(uploadPath+fileName);
 
-			if(mType != null){
+			if(mType != null) {
 				headers.setContentType(mType);
-			}else{
+			} else {
 
 				fileName = fileName.substring(fileName.indexOf("_")+1);       
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
@@ -118,10 +118,10 @@ public class UploadController {
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), 
 					headers, 
 					HttpStatus.CREATED);
-		}catch(Exception e){
+		} catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		}finally{
+		} finally {
 			in.close();
 		}
 		return entity;    
